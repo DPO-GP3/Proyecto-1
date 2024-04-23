@@ -29,7 +29,7 @@ public abstract class Pieza {
    this.estado = estado;
     }
 
-    // Métodos abstractos que las subclases deben implementar
+   
     public abstract void registrarPieza();
     public abstract void verificarEstado();
     protected abstract void aprobar();

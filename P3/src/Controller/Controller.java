@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Controller {
-    // Métodos del controlador
+   
 	private List<Usuario> usuariosValidos = new ArrayList<>();
     public void iniciarSubasta(Subasta subasta) {
         subasta.iniciarSubasta();
@@ -44,8 +44,8 @@ public class Controller {
         operador.administraSubastas();
     }
 
-    public void registrarOferta(Operador operador, Oferta oferta) {
-        operador.registraOfertas(oferta);
+    public void registrarOferta(Operador operador, Subasta subasta, Oferta oferta) {
+        operador.registraOfertas(subasta, oferta);
     }
     
 
@@ -91,36 +91,36 @@ public class Controller {
         pago.generarRecibo();
     }
 
-    // Método para iniciar sesión
+    
     public boolean iniciarSesion(String nombreUsuario, String contrasena) {
-        // Verificar si las credenciales coinciden con algún usuario válido
+        
         for (Usuario usuario : usuariosValidos) {
             if (usuario.getNombre().equals(nombreUsuario) && usuario.getContrasena().equals(contrasena)) {
-                // Las credenciales son correctas, inicio de sesión exitoso
+                
                 return true;
             }
         }
-        // No se encontró un usuario con las credenciales proporcionadas
+        
         return false;
     }
 
-    // Método para agregar más usuarios válidos (simulados)
+ 
     public void agregarUsuarioValido(String nombreUsuario, String contrasena) {
         usuariosValidos.add(new Usuario(nombreUsuario, contrasena));
     }
 
-    // Clase para representar a un usuario
+  
     private static class Usuario {
         private String nombre;
         private String contrasena;
 
-        // Constructor para crear un objeto Usuario
+       
         public Usuario(String nombre, String contrasena) {
             this.nombre = nombre;
             this.contrasena = contrasena;
         }
 
-        // Métodos getters para obtener el nombre y la contraseña del usuario
+       
         public String getNombre() {
             return nombre;
         }

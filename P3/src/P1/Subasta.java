@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Subasta {
     private boolean enCurso;
-    private List<Oferta> ofertas; // Lista para mantener registro de todas las ofertas realizadas en la subasta
+    private List<Oferta> ofertas; 
 
     public Subasta() {
         this.enCurso = false;
@@ -22,12 +22,12 @@ public class Subasta {
         System.out.println("Subasta finalizada.");
     }
 
-    // Este es el único método para registrar ofertas en la clase Subasta
+    
     public void registrarOferta(Comprador comprador, double monto) {
         Oferta nuevaOferta = new Oferta(comprador, monto);
-        // Asignar la nueva oferta a la lista de ofertas
+        
         this.ofertas.add(nuevaOferta);
-        // Imprimir confirmación
+        
         System.out.println("Nueva oferta registrada: " + nuevaOferta);
     }
     
@@ -35,7 +35,7 @@ public class Subasta {
         return enCurso;
     }
 
-    // Clase interna Oferta
+   
     public class Oferta {
         private Comprador comprador;
         private double monto;
@@ -47,11 +47,11 @@ public class Subasta {
 
         @Override
         public String toString() {
-            // Suponemos que Comprador tiene un método getNombre()
+           
             return "Oferta de " + comprador.getNombre() + " por " + monto;
         }
 
-        // Métodos getters para obtener el comprador y el monto de la oferta
+       
         public Comprador getComprador() {
             return comprador;
         }

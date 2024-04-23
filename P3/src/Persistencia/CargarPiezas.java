@@ -11,7 +11,7 @@ import java.io.Reader;
 public class CargarPiezas {
     public static Pieza[] desdeJSON(String rutaArchivo) {
         try (Reader reader = new FileReader(rutaArchivo)) {
-            // Convertir el archivo JSON a un arreglo de objetos Pieza usando Gson
+           
             Gson gson = new Gson();
             Pieza[] piezas = gson.fromJson(reader, Pieza[].class);
             return piezas;

@@ -7,32 +7,32 @@ public class Pago {
     private double monto;
     private int cuotas;
     private Date fecha;
-    private String comprador; // Agregado para almacenar el nombre del comprador
+    private String comprador; 
 
     public Pago(String comprador, String metodoPago, double monto, int cuotas) {
-        this.comprador = comprador; // Guarda el nombre del comprador
+        this.comprador = comprador; 
         this.metodoPago = metodoPago;
         this.monto = monto;
         this.cuotas = cuotas;
-        this.fecha = new Date(); // Establece la fecha actual
+        this.fecha = new Date();
     }
     public void emitirRecibo() {
-        // Lógica para generar un recibo con los detalles del pago
+        
         System.out.println("Recibo generado:");
         System.out.println("Fecha: " + getFecha());
         System.out.println("Método de pago: " + getMetodoPago());
         System.out.println("Monto: " + getMonto());
         System.out.println("Cuotas: " + getCuotas());
-        // Aquí puedes añadir más información al recibo si es necesario
+        
     }
 
     public void registrarPago() {
-        // Lógica para registrar el pago en la base de datos o en un sistema externo
+        
         System.out.println("Pago registrado exitosamente.");
     }
 
     public boolean verificarPago() {
-        // Lógica para verificar si el pago se ha realizado correctamente
+        
         return true;
     }
     public String getComprador() {
@@ -44,7 +44,7 @@ public class Pago {
     }
 
     public void generarRecibo() {
-        // Lógica para generar un recibo con los detalles del pago
+        
         System.out.println("Recibo generado:");
         System.out.println("Fecha: " + fecha);
         System.out.println("Método de pago: " + metodoPago);

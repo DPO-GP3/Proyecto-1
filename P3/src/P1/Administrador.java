@@ -39,9 +39,9 @@ public class Administrador extends Empleado {
     }
     
     public void realizarTareas() {
-        // Implementación específica para Administrador
+        
         System.out.println("El administrador está supervisando todas las operaciones.");
-        // Puedes agregar aquí la lógica relevante para un Administrador
+        
     }
 
 
