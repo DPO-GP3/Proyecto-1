@@ -1,6 +1,7 @@
 package Controller;
 
 import java.util.List;
+import java.util.ArrayList;
 import P1.Subasta;
 import P1.Comprador;
 import P1.Cajero;
@@ -10,12 +11,58 @@ import P1.Operador;
 import P1.Oferta;
 import P1.Administrador;
 import P1.Pieza;
-import java.util.List;
-import java.util.ArrayList;
 
 public class Controller {
-   
-	private List<Usuario> usuariosValidos = new ArrayList<>();
+    // Lista de usuarios válidos
+    private List<Usuario> usuariosValidos = new ArrayList<>();
+
+    // Constructor que inicializa las cuentas predefinidas
+    public Controller() {
+        inicializarUsuariosValidos();
+    }
+
+    // Método para inicializar las credenciales predefinidas
+    private void inicializarUsuariosValidos() {
+        agregarUsuarioValido("admin", "adminpass");
+        agregarUsuarioValido("operador", "operpass");
+        agregarUsuarioValido("cliente", "clientepass");
+    }
+
+    // Método para verificar las credenciales e iniciar sesión
+    public boolean iniciarSesion(String nombreUsuario, String contrasena) {
+        for (Usuario usuario : usuariosValidos) {
+            if (usuario.getNombre().equals(nombreUsuario) && usuario.getContrasena().equals(contrasena)) {
+                return true; // Inicio de sesión exitoso
+            }
+        }
+        return false; // Usuario no encontrado o contraseña incorrecta
+    }
+
+    // Método para agregar más usuarios válidos (simulados)
+    public void agregarUsuarioValido(String nombreUsuario, String contrasena) {
+        usuariosValidos.add(new Usuario(nombreUsuario, contrasena));
+    }
+
+    // Clase interna para representar a un usuario
+    private static class Usuario {
+        private String nombre;
+        private String contrasena;
+
+        public Usuario(String nombre, String contrasena) {
+            this.nombre = nombre;
+            this.contrasena = contrasena;
+        }
+
+        public String getNombre() {
+            return nombre;
+        }
+
+        public String getContrasena() {
+            return contrasena;
+        }
+    }
+
+    // Otros métodos relacionados con la lógica de la aplicación
     public void iniciarSubasta(Subasta subasta) {
         subasta.iniciarSubasta();
     }
@@ -47,7 +94,6 @@ public class Controller {
     public void registrarOferta(Operador operador, Subasta subasta, Oferta oferta) {
         operador.registraOfertas(subasta, oferta);
     }
-    
 
     public void asistirCompradores(Operador operador, Comprador comprador) {
         operador.asisteCompradores(comprador);
@@ -73,8 +119,6 @@ public class Controller {
         comprador.realizarOferta(subasta, monto);
     }
 
-  
-
     public void realizarCompra(Comprador comprador, List<Pieza> piezas) {
         comprador.realizarCompra(piezas);
     }
@@ -89,44 +133,5 @@ public class Controller {
 
     public void generarRecibo(Pago pago) {
         pago.generarRecibo();
-    }
-
-    
-    public boolean iniciarSesion(String nombreUsuario, String contrasena) {
-        
-        for (Usuario usuario : usuariosValidos) {
-            if (usuario.getNombre().equals(nombreUsuario) && usuario.getContrasena().equals(contrasena)) {
-                
-                return true;
-            }
-        }
-        
-        return false;
-    }
-
- 
-    public void agregarUsuarioValido(String nombreUsuario, String contrasena) {
-        usuariosValidos.add(new Usuario(nombreUsuario, contrasena));
-    }
-
-  
-    private static class Usuario {
-        private String nombre;
-        private String contrasena;
-
-       
-        public Usuario(String nombre, String contrasena) {
-            this.nombre = nombre;
-            this.contrasena = contrasena;
-        }
-
-       
-        public String getNombre() {
-            return nombre;
-        }
-
-        public String getContrasena() {
-            return contrasena;
-        }
     }
 }
