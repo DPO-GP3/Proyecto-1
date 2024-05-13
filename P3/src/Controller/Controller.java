@@ -11,30 +11,14 @@ import P1.Operador;
 import P1.Oferta;
 import P1.Administrador;
 import P1.Pieza;
-import Persistencia.IPersistenciaPagos;
-import Persistencia.IPersistenciaPiezas;
-import Persistencia.IPersistenciaCompradores;
-import Persistencia.PersistenciaPagosJson;
-import Persistencia.PersistenciaPiezasJson;
-import Persistencia.TipoInvalidoException;
-import Persistencia.PersistenciaCompradoresJson;
-import java.io.IOException;
 
 public class Controller {
     // Lista de usuarios válidos
     private List<Usuario> usuariosValidos = new ArrayList<>();
-    private Subasta subasta;
-    private IPersistenciaPiezas persistenciaPiezas;
-    private IPersistenciaCompradores persistenciaCompradores;
-    private IPersistenciaPagos persistenciaPagos;
 
-    // Constructor que inicializa las cuentas predefinidas y las instancias de persistencia
+    // Constructor que inicializa las cuentas predefinidas
     public Controller() {
         inicializarUsuariosValidos();
-        this.subasta = subasta;
-        this.persistenciaPiezas = new PersistenciaPiezasJson();
-        this.persistenciaCompradores = new PersistenciaCompradoresJson();
-        this.persistenciaPagos = new PersistenciaPagosJson();
     }
 
     // Método para inicializar las credenciales predefinidas
@@ -75,31 +59,6 @@ public class Controller {
 
         public String getContrasena() {
             return contrasena;
-        }
-    }
-
-    // Métodos relacionados con la carga y guardado de datos
-    public void cargarDatos(String archivoPiezas, String archivoCompradores, String archivoPagos) {
-        try {
-            // Cargar datos de piezas, compradores y pagos desde archivos
-            persistenciaPiezas.cargarPiezas(archivoPiezas, subasta);
-            persistenciaCompradores.cargarCompradores(archivoCompradores, subasta);
-            persistenciaPagos.cargarPagos(archivoPagos, subasta);
-            System.out.println("Datos cargados exitosamente.");
-        } catch (IOException | TipoInvalidoException e) {
-            System.err.println("Error al cargar los datos: " + e.getMessage());
-        }
-    }
-
-    public void guardarDatos(String archivoPiezas, String archivoCompradores, String archivoPagos) {
-        try {
-            // Guardar datos de piezas, compradores y pagos en archivos
-            persistenciaPiezas.salvarPiezas(archivoPiezas, subasta);
-            persistenciaCompradores.salvarCompradores(archivoCompradores, subasta);
-            persistenciaPagos.salvarPagos(archivoPagos, subasta);
-            System.out.println("Datos guardados exitosamente.");
-        } catch (IOException e) {
-            System.err.println("Error al guardar los datos: " + e.getMessage());
         }
     }
 
@@ -176,4 +135,3 @@ public class Controller {
         pago.generarRecibo();
     }
 }
-
